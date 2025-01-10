@@ -12,7 +12,13 @@ export class ApiService {
   private readonly _httpClient: HttpClient = inject(HttpClient);
 
   public getEmployeeList(): Observable<IEmployee[]> {
-    return this._httpClient.get<IApiResponse<IEmployee[]>>('/api/employee').pipe(
+    return this._httpClient.get<IApiResponse<IEmployee[]>>('/api/employees').pipe(
+      map(res => res.data)
+    );
+  }
+
+  public getEmployeeDetails(employeeId: string): Observable<IEmployee> {
+    return this._httpClient.get<IApiResponse<IEmployee>>(`/api/employees/${employeeId}`).pipe(
       map(res => res.data)
     );
   }

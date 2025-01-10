@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../../../services/api/api.service';
 import { IEmployee } from '../../../interfaces/employee.interface';
@@ -11,11 +12,16 @@ import { IEmployee } from '../../../interfaces/employee.interface';
 })
 export class EmployeeListComponent {
   private readonly _apiService: ApiService = inject(ApiService);
+  private readonly _router: Router = inject(Router);
 
   public employeeList = signal<IEmployee[]>([]);
 
   constructor() {
     this._setEmployeeList();
+  }
+
+  public goToEmployeeDetails(employeeId: string): void {
+    this._router.navigate(['/offboarding/details'], { state: { employeeId } });
   }
 
   private _setEmployeeList(): void {
