@@ -1,0 +1,152 @@
+[
+  {
+    "department": "IT",
+    "email": "john.doe@example.com",
+    "equipments": [
+      {
+        "id": "eq1",
+        "name": "Laptop"
+      },
+      {
+        "id": "eq2",
+        "name": "Monitor"
+      }
+    ],
+    "id": "emp1",
+    "name": "John Doe",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "HR",
+    "email": "jane.smith@example.com",
+    "equipments": [
+      {
+        "id": "eq3",
+        "name": "Phone"
+      }
+    ],
+    "id": "emp2",
+    "name": "Jane Smith",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "Marketing",
+    "email": "david.lee@example.com",
+    "equipments": [
+      {
+        "id": "eq4",
+        "name": "Laptop"
+      },
+      {
+        "id": "eq5",
+        "name": "Tablet"
+      }
+    ],
+    "id": "emp3",
+    "name": "David Lee",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "Finance",
+    "email": "sarah.jones@example.com",
+    "equipments": [
+      {
+        "id": "eq6",
+        "name": "Computer"
+      }
+    ],
+    "id": "emp4",
+    "name": "Sarah Jones",
+    "status": "OFFBOARDED"
+  },
+  {
+    "department": "Sales",
+    "email": "michael.brown@example.com",
+    "equipments": [
+      {
+        "id": "eq7",
+        "name": "Laptop"
+      },
+      {
+        "id": "eq8",
+        "name": "Phone"
+      }
+    ],
+    "id": "emp5",
+    "name": "Michael Brown",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "IT",
+    "email": "emily.davis@example.com",
+    "equipments": [
+      {
+        "id": "eq9",
+        "name": "Desktop"
+      }
+    ],
+    "id": "emp6",
+    "name": "Emily Davis",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "HR",
+    "email": "daniel.wilson@example.com",
+    "equipments": [
+      {
+        "id": "eq10",
+        "name": "Laptop"
+      },
+      {
+        "id": "eq11",
+        "name": "Phone"
+      }
+    ],
+    "id": "emp7",
+    "name": "Daniel Wilson",
+    "status": "OFFBOARDED"
+  },
+  {
+    "department": "Marketing",
+    "email": "christopher.martinez@example.com",
+    "equipments": [
+      {
+        "id": "eq12",
+        "name": "Tablet"
+      }
+    ],
+    "id": "emp8",
+    "name": "Christopher Martinez",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "Finance",
+    "email": "andrea.robinson@example.com",
+    "equipments": [
+      {
+        "id": "eq13",
+        "name": "Computer"
+      },
+      {
+        "id": "eq14",
+        "name": "Monitor"
+      }
+    ],
+    "id": "emp9",
+    "name": "Andrea Robinson",
+    "status": "ACTIVE"
+  },
+  {
+    "department": "Sales",
+    "email": "anthony.clark@example.com",
+    "equipments": [
+      {
+        "id": "eq15",
+        "name": "Laptop"
+      }
+    ],
+    "id": "emp10",
+    "name": "Anthony Clark",
+    "status": "ACTIVE"
+  }
+]
