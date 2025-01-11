@@ -21,6 +21,14 @@ export class EmployeeDetailsComponent {
     this._setEmployeeDetails(this._router.getCurrentNavigation());
   }
 
+  public goToEmployeeList(): void {
+    this._router.navigate(['/offboarding/list']);
+  }
+
+  public offboardEmployee(): void {
+    console.log(this.employee());
+  }
+
   private _setEmployeeDetails(currentNavigation: Navigation | null): void {
     const employeeId = currentNavigation?.extras.state?.['employeeId'] || null;
     if (!employeeId) {

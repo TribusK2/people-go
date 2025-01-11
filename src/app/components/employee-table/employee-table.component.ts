@@ -14,7 +14,14 @@ import { EmployeeTableService } from '../../services/employee-table/employee-tab
   standalone: true,
   templateUrl: './employee-table.component.html',
   styleUrl: './employee-table.component.scss',
-  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule],
+  imports: [
+    CommonModule, 
+    MatFormFieldModule, 
+    MatIconModule, 
+    MatInputModule, 
+    MatProgressSpinnerModule,
+    MatTableModule, 
+  ],
 })
 export class EmployeeTableComponent {
   private readonly _employeeTableService: EmployeeTableService = inject(EmployeeTableService);

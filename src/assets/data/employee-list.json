@@ -130,6 +130,10 @@
       {
         "id": "eq14",
         "name": "Monitor"
+      },
+      {
+        "id": "eq15",
+        "name": "Tablet"
       }
     ],
     "id": "emp9",
@@ -141,7 +145,7 @@
     "email": "anthony.clark@example.com",
     "equipments": [
       {
-        "id": "eq15",
+        "id": "eq16",
         "name": "Laptop"
       }
     ],

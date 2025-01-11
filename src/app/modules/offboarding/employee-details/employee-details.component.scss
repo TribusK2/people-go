@@ -1,0 +1,126 @@
+@use 'colors'as clr;
+@use 'mixins'as mix;
+@use 'variables'as var;
+
+section {
+  max-width: var.$section-max-width-desktop;
+  margin: auto;
+  padding: var.$default-spacing;
+
+  @include mix.media(tablet) {
+    padding: var.$default-spacing-tablet;
+  }
+
+  @include mix.media(desktop) {
+    padding: var.$default-spacing-desktop;
+  }
+}
+
+.btn {
+  &-back {
+    --mdc-text-button-label-text-color: #{clr.$font-dark-color};
+  }
+
+  &-offboard {
+    --mdc-filled-button-label-text-color: #{clr.$font-dark-color};
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  &-title {
+    @include mix.font-size(large);
+  }
+}
+
+.contentRow {
+  padding-bottom: var.$default-spacing-desktop;
+
+  &-title,
+  &-listTitle {
+    @include mix.font-size(medium);
+  }
+
+  &-title {
+    border-bottom: 2px solid clr.$brand-color;
+    padding-bottom: 4px;
+  }
+
+  &-listTitle {
+    background-color: clr.$bg-item-dark-color-subdued;
+    font-weight: 400;
+    margin: 0;
+    padding: var.$default-spacing;
+
+    @include mix.media(tablet) {
+      padding: var.$default-spacing-tablet;
+    }
+
+    @include mix.media(desktop) {
+      padding: var.$default-spacing-desktop;
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-gap: var.$default-spacing;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include mix.media(tablet) {
+      grid-gap: var.$default-spacing-tablet;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mix.media(desktop) {
+      grid-gap: var.$default-spacing-desktop;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &-itemWrapper {
+    display: flex;
+  }
+
+  &-itemKey,
+  &-itemValue {
+    margin: 0;
+  }
+
+  &-itemKey {
+    color: clr.$font-dark-color-subdued;
+    min-width: 100px;
+  }
+
+  &-itemValue {
+    word-break: break-word;
+  }
+
+  &-listItem {
+    background-color: clr.$bg-item-light-color;
+    font-weight: 600;
+    margin: 0;
+    padding: var.$default-spacing;
+
+    &:not(:first-of-type) {
+      border-top: 1px solid clr.$border-dark-color-subdued;
+    }
+
+    @include mix.media(tablet) {
+      padding: var.$default-spacing-tablet;
+    }
+
+    @include mix.media(desktop) {
+      padding: var.$default-spacing-desktop;
+    }
+  }
+}
+
+.spinnerWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+}

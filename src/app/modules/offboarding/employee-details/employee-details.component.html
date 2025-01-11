@@ -1,1 +1,44 @@
-<p *ngIf="employee() as employee">{{employee.name}}</p>
+<section>
+  <button mat-button class="btn-back" (click)="goToEmployeeList()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+    Back
+  </button>
+
+  <ng-container *ngIf="employee() as employee else loading">
+    <div class="header">
+      <h1 class="header-title">{{employee.name}}</h1>
+      <button mat-flat-button class="btn-offboard" (click)="offboardEmployee()">Offboard</button>
+    </div>
+
+    <div class="contentRow">
+      <h2 class="contentRow-title">Employee Details</h2>
+      <div class="contentRow-grid">
+        <div class="contentRow-itemWrapper">
+          <p class="contentRow-itemKey">Full Name:</p>
+          <p class="contentRow-itemValue">{{employee.name}}</p>
+        </div>
+
+        <div class="contentRow-itemWrapper">
+          <p class="contentRow-itemKey">Email:</p>
+          <p class="contentRow-itemValue">{{employee.email}}</p>
+        </div>
+
+        <div class="contentRow-itemWrapper">
+          <p class="contentRow-itemKey">Department:</p>
+          <p class="contentRow-itemValue">{{employee.department}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentRow">
+      <h2 class="contentRow-title">Equipment</h2>
+      <h3 class="contentRow-listTitle">Item</h3>
+      <p *ngFor="let item of employee.equipments" class="contentRow-listItem">{{item.name}}</p>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="spinnerWrapper">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</section>

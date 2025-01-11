@@ -11,10 +11,13 @@
   margin: var.$default-spacing;
   width: auto;
 
-  @include mix.media(tablet) {
+  @include mix.media(mobile) {
     align-self: end;
-    margin: var.$default-spacing-tablet;
     width: 400px;
+  }
+
+  @include mix.media(tablet) {
+    margin: var.$default-spacing-tablet;
   }
 
   @include mix.media(desktop) {
