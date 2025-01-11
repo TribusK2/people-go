@@ -1,0 +1,34 @@
+@use 'colors'as clr;
+@use 'mixins'as mix;
+@use 'variables'as var;
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchField {
+  margin: var.$default-spacing;
+  width: auto;
+
+  @include mix.media(tablet) {
+    align-self: end;
+    margin: var.$default-spacing-tablet;
+    width: 400px;
+  }
+
+  @include mix.media(desktop) {
+    margin: var.$default-spacing-desktop;
+  }
+}
+
+.tableBodyRow {
+  &:hover {
+    cursor: pointer;
+    background: rgba(clr.$brand-color, .1)
+  }
+
+  &:active {
+    background: rgba(clr.$brand-color, .3);
+  }
+}

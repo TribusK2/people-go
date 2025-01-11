@@ -12,6 +12,7 @@ section {
 
 .message {
   @include mix.font-size(large);
+  text-align: center;
 }
 
 .btn {

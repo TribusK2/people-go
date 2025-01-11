@@ -1,0 +1,22 @@
+@use 'colors'as clr;
+@use 'mixins'as mix;
+@use 'variables'as var;
+
+section{
+  max-width: var.$section-max-width-desktop;
+  margin: auto;
+  padding: var.$default-spacing;
+
+  @include mix.media(tablet) {
+    padding: var.$default-spacing-tablet;
+  }
+  
+  @include mix.media(desktop) {
+    padding: var.$default-spacing-desktop;
+  }
+}
+
+.title {
+  @include mix.font-size(large);
+  font-weight: 400;
+}

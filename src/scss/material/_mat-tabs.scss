@@ -1,0 +1,41 @@
+@use 'colors'as clr;
+@use 'variables'as var;
+
+.mat-mdc-tab {
+  --mat-tab-header-active-label-text-color: #{clr.$brand-color};
+  --mat-tab-header-active-focus-label-text-color: #{clr.$brand-color};
+  --mat-tab-header-active-hover-label-text-color: #{clr.$brand-color};
+
+  .mdc-tab-indicator {
+    background-color: clr.$bg-item-light-color;
+  }
+
+  &:first-of-type {
+
+    .mdc-tab-indicator,
+    .mat-mdc-tab-ripple {
+      border-top-left-radius: var.$default-item-radius;
+    }
+  }
+
+  &:last-of-type {
+
+    .mdc-tab-indicator,
+    .mat-mdc-tab-ripple {
+      border-top-right-radius: var.$default-item-radius;
+    }
+  }
+
+}
+
+.mdc-tab__ripple::before {
+  border-radius: 10px;
+}
+
+.mat-mdc-tab-ripple {
+  z-index: 2;
+}
+
+.mat-mdc-tab-body {
+  background-color: clr.$bg-item-light-color;
+}

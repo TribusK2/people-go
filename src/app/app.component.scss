@@ -5,31 +5,38 @@
 
 :host {
   --mat-sys-primary: #{clr.$brand-color};
+  --mat-sys-surface: #{clr.$bg-item-light-color};
   color: clr.$font-dark-color;
 }
 
-header {
+.header {
   @include mat.elevation(6);
-  @include mix.font-size(large);
   align-items: center;
   background-color: clr.$brand-color;
   display: flex;
   height: var.$header-height;
-  padding: 0 var.$default-spacing;
   position: fixed;
   top: 0;
   width: 100%;
+  
+  &-title {
+    @include mix.font-size(large);
+    padding: 0 var.$default-spacing;
+    margin: auto;
+    width: var.$section-max-width-desktop;
 
-  @include mix.media(tablet) {
-    padding: 0 var.$default-spacing-tablet;
-  }
-
-  @include mix.media(desktop) {
-    padding: 0 var.$default-spacing-desktop;
+    @include mix.media(tablet) {
+      padding: 0 var.$default-spacing-tablet;
+    }
+  
+    @include mix.media(desktop) {
+      padding: 0 var.$default-spacing-desktop;
+    }
   }
 }
 
 main {
+  background-color: clr.$bg-main-light-color;
   min-height: calc(100% - var.$header-height);
   padding-top: var.$header-height;
 }

@@ -1,3 +1,8 @@
-<div *ngFor="let employee of employeeList()">
-  <button (click)="goToEmployeeDetails(employee.id)">{{ employee.name }}</button>
-</div>
+<section>
+  <h1 class="title">Offboarding</h1>
+  <mat-tab-group class="matTab" mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Employees">
+      <app-employee-table (recordSelect)="goToEmployeeDetails($event)" />
+    </mat-tab>
+  </mat-tab-group>
+</section>

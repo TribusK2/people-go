@@ -1,8 +1,12 @@
 $header-height: 40px;
 
-$default-spacing: 8px;
-$default-spacing-tablet: 12px;
-$default-spacing-desktop: 16px;
+$default-spacing: 10px;
+$default-spacing-tablet: 15px;
+$default-spacing-desktop: 20px;
+
+$default-item-radius: 10px;
+
+$section-max-width-desktop: 1200px;
 
 $screen-breakpoints: (
   mobile: 480px,

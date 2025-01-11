@@ -1,0 +1,10 @@
+@use 'colors'as clr;
+@use 'variables'as var;
+
+.mat-mdc-tab-body-wrapper {
+  border-radius: 0 var.$default-item-radius var.$default-item-radius var.$default-item-radius;
+}
+
+.mat-mdc-table {
+  --mat-table-background-color: #{clr.$bg-item-light-color};
+}
