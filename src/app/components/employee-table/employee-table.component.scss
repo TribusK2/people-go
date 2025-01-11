@@ -32,3 +32,15 @@
     background: rgba(clr.$brand-color, .3);
   }
 }
+
+.noDataRow {
+  display: flex;
+  justify-content: center;
+}
+
+.spinnerWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+}

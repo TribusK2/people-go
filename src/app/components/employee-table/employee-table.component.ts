@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { IEmployee } from '../../interfaces/employee.interface';
 import { EmployeeTableService } from '../../services/employee-table/employee-table.service';
@@ -13,7 +14,7 @@ import { EmployeeTableService } from '../../services/employee-table/employee-tab
   standalone: true,
   templateUrl: './employee-table.component.html',
   styleUrl: './employee-table.component.scss',
-  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule],
 })
 export class EmployeeTableComponent {
   private readonly _employeeTableService: EmployeeTableService = inject(EmployeeTableService);
@@ -21,7 +22,7 @@ export class EmployeeTableComponent {
   @Output() public recordSelect = new EventEmitter<IEmployee>();
 
   public displayedColumns = ['fullname', 'email', 'department', 'equipment', 'status'];
-  public dataSource: Signal<MatTableDataSource<IEmployee>> = computed(() => this._setDataSource());
+  public dataSource: Signal<MatTableDataSource<IEmployee> | null> = computed(() => this._setDataSource());
   private _dataSourceFilter: WritableSignal<string> = signal('');
 
   public onRecordSelect(employee: IEmployee): void {
@@ -33,9 +34,14 @@ export class EmployeeTableComponent {
     this._dataSourceFilter.set(filterValue.trim().toLowerCase());
   }
 
-  private _setDataSource(): MatTableDataSource<IEmployee> {
-    const dataSource = new MatTableDataSource(this._employeeTableService.employeeList());
-    dataSource.filter = this._dataSourceFilter();
+  private _setDataSource(): MatTableDataSource<IEmployee> | null {
+    let dataSource: MatTableDataSource<IEmployee> | null = null;
+    const employeeList = this._employeeTableService.employeeList();
+
+    if (employeeList) {
+      dataSource = new MatTableDataSource(employeeList);
+      dataSource.filter = this._dataSourceFilter();
+    }
 
     return dataSource;
   }

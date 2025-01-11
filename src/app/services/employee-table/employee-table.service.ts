@@ -5,5 +5,5 @@ import { IEmployee } from '../../interfaces/employee.interface';
   providedIn: 'root',
 })
 export class EmployeeTableService {
-  public employeeList = signal<IEmployee[]>([]);
+  public employeeList = signal<IEmployee[] | null>(null);
 }
