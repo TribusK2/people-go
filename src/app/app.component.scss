@@ -1,0 +1,35 @@
+@use '@angular/material'as mat;
+@use 'colors'as clr;
+@use 'mixins'as mix;
+@use 'variables'as var;
+
+:host {
+  --mat-sys-primary: #{clr.$brand-color};
+  color: clr.$font-dark-color;
+}
+
+header {
+  @include mat.elevation(6);
+  @include mix.font-size(large);
+  align-items: center;
+  background-color: clr.$brand-color;
+  display: flex;
+  height: var.$header-height;
+  padding: 0 var.$default-spacing;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  @include mix.media(tablet) {
+    padding: 0 var.$default-spacing-tablet;
+  }
+
+  @include mix.media(desktop) {
+    padding: 0 var.$default-spacing-desktop;
+  }
+}
+
+main {
+  min-height: calc(100% - var.$header-height);
+  padding-top: var.$header-height;
+}

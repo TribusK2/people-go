@@ -1,0 +1,12 @@
+@use 'variables'as var;
+
+@mixin font-size($size) {
+  font-size: map-get(var.$font-sizes, $size);
+  line-height: map-get(var.$line-height, $size);
+}
+
+@mixin media($breakpoint) {
+  @media (min-width: map-get(var.$screen-breakpoints, $breakpoint)) {
+    @content;
+  }
+}

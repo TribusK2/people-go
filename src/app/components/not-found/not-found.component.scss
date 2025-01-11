@@ -1,0 +1,19 @@
+@use 'colors'as clr;
+@use 'mixins'as mix;
+@use 'variables'as var;
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - var.$header-height);
+}
+
+.message {
+  @include mix.font-size(large);
+}
+
+.btn {
+  --mdc-protected-button-label-text-color: #{clr.$font-dark-color};
+}

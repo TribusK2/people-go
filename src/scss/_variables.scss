@@ -1,0 +1,23 @@
+$header-height: 40px;
+
+$default-spacing: 8px;
+$default-spacing-tablet: 12px;
+$default-spacing-desktop: 16px;
+
+$screen-breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px
+);
+
+$font-sizes: (
+  small: 0.8rem, //not verified
+  medium: 1rem, //not verified
+  large: 1.4rem,
+);
+
+$line-height: (
+  small: 0.8rem, //not verified
+  medium: 1rem, //not verified
+  large: 1.7rem,
+);
