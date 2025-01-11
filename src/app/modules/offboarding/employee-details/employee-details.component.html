@@ -7,7 +7,11 @@
   <ng-container *ngIf="employee() as employee else loading">
     <div class="header">
       <h1 class="header-title">{{employee.name}}</h1>
-      <button mat-flat-button class="btn-offboard" (click)="offboardEmployee()">Offboard</button>
+      <button mat-flat-button class="btn-offboard"
+              [disabled]="!canOffboard()"
+              (click)="offboardEmployee()">
+        Offboard
+      </button>
     </div>
 
     <div class="contentRow">
