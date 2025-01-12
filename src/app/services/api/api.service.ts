@@ -9,7 +9,7 @@ import { IApiResponse } from '../../interfaces/api-response.interface';
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly _httpClient: HttpClient = inject(HttpClient);
+  private readonly _httpClient = inject(HttpClient);
 
   public getEmployeeList(): Observable<IEmployee[]> {
     return this._httpClient.get<IApiResponse<IEmployee[]>>('/api/employees').pipe(

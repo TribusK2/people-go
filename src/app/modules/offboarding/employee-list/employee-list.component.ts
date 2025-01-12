@@ -12,9 +12,9 @@ import { EmployeeTableService } from '../../../services/employee-table/employee-
   styleUrl: './employee-list.component.scss',
 })
 export class EmployeeListComponent {
-  private readonly _apiService: ApiService = inject(ApiService);
-  private readonly _employeeTableService: EmployeeTableService = inject(EmployeeTableService);
-  private readonly _router: Router = inject(Router);
+  private readonly _apiService = inject(ApiService);
+  private readonly _employeeTableService = inject(EmployeeTableService);
+  private readonly _router = inject(Router);
 
   constructor() {
     this._setEmployeeList();

@@ -1,22 +1,25 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Navigation, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 import { IEmployee } from '../../../interfaces/employee.interface';
 import { ApiService } from '../../../services/api/api.service';
 import { EmployeeTableService } from '../../../services/employee-table/employee-table.service';
 import { EmployeeStatus } from '../../../enums/employee.status.enum';
+import { OffboardDialogComponent } from '../../../components/offboard-dialog/offboard-dialog.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-employee-details',
   standalone: false,
-
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.scss',
 })
 export class EmployeeDetailsComponent {
-  private readonly _apiService: ApiService = inject(ApiService);
-  private readonly _employeeTableService: EmployeeTableService = inject(EmployeeTableService);
-  private readonly _router: Router = inject(Router);
+  private readonly _apiService = inject(ApiService);
+  private readonly _employeeTableService = inject(EmployeeTableService);
+  private readonly _router = inject(Router);
+  private readonly _dialog = inject(MatDialog);
 
   public employee = signal<IEmployee | null>(null);
   public canOffboard = computed<boolean>(() => this._checkIfCanOffboard());
@@ -30,11 +33,17 @@ export class EmployeeDetailsComponent {
   }
 
   public offboardEmployee(): void {
-    const employeeList = this._employeeTableService.employeeList();
+    const dialogRef = this._dialog.open(OffboardDialogComponent, {
+      data: this.employee(),
+    });
 
-    if (employeeList) {
-      this._updateEmployeeList(employeeList);
-    }
+    dialogRef.afterClosed().pipe(
+      tap((employeeData) => {
+        if(employeeData) {
+          this._updateEmployeeList(this._employeeTableService.employeeList());
+        }
+      })
+    ).subscribe();
   }
 
   private _setEmployeeDetails(currentNavigation: Navigation | null): void {
@@ -55,14 +64,14 @@ export class EmployeeDetailsComponent {
     return !!employeeList && !!employee && employee.status !== EmployeeStatus.OFFBOARDED;
   }
 
-  private _updateEmployeeList(employeeList: IEmployee[]): void {
-    const employeeIndex = employeeList.findIndex((employee) => {
+  private _updateEmployeeList(employeeList: IEmployee[] | null): void {
+    const employeeToUpdate = employeeList?.find((employee) => {
       return employee.id === this.employee()?.id;
     });
 
-    if (employeeIndex > -1) {
-      employeeList[employeeIndex].status = EmployeeStatus.OFFBOARDED;
-      this._employeeTableService.employeeList.set([...employeeList]);
+    if (employeeToUpdate) {
+      employeeToUpdate.status = EmployeeStatus.OFFBOARDED;
+      this._employeeTableService.updateEmployee(employeeToUpdate);
       this.goToEmployeeList();
     }
   }

@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { OffboardingRoutingModule } from './offboarding-routing.module';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { EmployeeTableComponent } from '../../components/employee-table/employee-table.component';
+import { OffboardDialogComponent } from '../../components/offboard-dialog/offboard-dialog.component';
+import { OffboardFormComponent } from '../../components/offboard-form/offboard-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { EmployeeTableComponent } from '../../components/employee-table/employee
     MatIconModule,
     MatProgressSpinnerModule,
     MatTabsModule,
+    OffboardDialogComponent,
+    OffboardFormComponent,
     OffboardingRoutingModule,
   ],
 })

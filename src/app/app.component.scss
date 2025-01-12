@@ -3,12 +3,6 @@
 @use 'mixins'as mix;
 @use 'variables'as var;
 
-:host {
-  --mat-sys-primary: #{clr.$brand-color};
-  --mat-sys-surface: #{clr.$bg-item-light-color};
-  color: clr.$font-dark-color;
-}
-
 .header {
   @include mat.elevation(6);
   align-items: center;
@@ -19,7 +13,7 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  
+
   &-title {
     @include mix.font-size(large);
     padding: 0 var.$default-spacing;
@@ -29,7 +23,7 @@
     @include mix.media(tablet) {
       padding: 0 var.$default-spacing-tablet;
     }
-  
+
     @include mix.media(desktop) {
       padding: 0 var.$default-spacing-desktop;
     }

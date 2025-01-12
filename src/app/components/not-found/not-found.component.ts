@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   imports: [MatButtonModule, MatIconModule],
 })
 export class NotFoundComponent {
-  private readonly _router: Router = inject(Router);
+  private readonly _router = inject(Router);
 
   public goToHomePage(): void {
     this._router.navigate(['/']);

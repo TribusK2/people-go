@@ -1,0 +1,5 @@
+@use 'variables'as var;
+
+.mat-mdc-dialog-surface {
+  --mdc-dialog-container-shape: #{var.$default-item-radius};
+}

@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @use 'scss/material';
 @use 'scss';
+@use 'colors' as clr;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+  --mat-sys-primary: #{clr.$brand-color};
+  --mat-sys-surface: #{clr.$bg-item-light-color};
+  color: clr.$font-dark-color;
+}

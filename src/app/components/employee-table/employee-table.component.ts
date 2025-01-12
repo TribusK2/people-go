@@ -24,7 +24,7 @@ import { EmployeeTableService } from '../../services/employee-table/employee-tab
   ],
 })
 export class EmployeeTableComponent {
-  private readonly _employeeTableService: EmployeeTableService = inject(EmployeeTableService);
+  private readonly _employeeTableService = inject(EmployeeTableService);
 
   @Output() public recordSelect = new EventEmitter<IEmployee>();
 
