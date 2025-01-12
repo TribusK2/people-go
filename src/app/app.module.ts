@@ -6,14 +6,16 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { apiMockInterceptor } from './interceptors/api-mock.interceptor';
+import { GlobalSpinnerComponent } from './components/global-spinner/global-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    GlobalSpinnerComponent,
   ],
   providers: [
     provideAnimationsAsync(),

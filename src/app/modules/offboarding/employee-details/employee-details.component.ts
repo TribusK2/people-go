@@ -10,6 +10,7 @@ import { EmployeeStatus } from '../../../enums/employee.status.enum';
 import { OffboardDialogComponent } from '../../../components/offboard-dialog/offboard-dialog.component';
 import { IOffboardData } from '../../../interfaces/offboard-data.interface';
 import { IUser } from '../../../interfaces/user.interface';
+import { GlobalSpinnerService } from '../../../services/global-spinner/global-spinner.service';
 
 @Component({
   selector: 'app-employee-details',
@@ -19,9 +20,10 @@ import { IUser } from '../../../interfaces/user.interface';
 })
 export class EmployeeDetailsComponent {
   private readonly _apiService = inject(ApiService);
-  private readonly _employeeTableService = inject(EmployeeTableService);
-  private readonly _router = inject(Router);
   private readonly _dialog = inject(MatDialog);
+  private readonly _employeeTableService = inject(EmployeeTableService);
+  private readonly _globalSpinnerService = inject(GlobalSpinnerService);
+  private readonly _router = inject(Router);
 
   public employee = signal<IEmployee | null>(null);
   public canOffboard = computed<boolean>(() => this._checkIfCanOffboard());
@@ -67,7 +69,11 @@ export class EmployeeDetailsComponent {
     const employeeId = this.employee()?.id;
 
     if (employeeId && offboardData) {
-      return this._apiService.offboardUser(employeeId, offboardData);
+      this._globalSpinnerService.isLoading.set(true);
+
+      return this._apiService.offboardUser(employeeId, offboardData).pipe(
+        tap(() => this._globalSpinnerService.isLoading.set(false))
+      );
     }
 
     return EMPTY;
