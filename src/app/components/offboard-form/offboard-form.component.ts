@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { distinctUntilChanged, filter, map, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+import { IOffboardData } from '../../interfaces/offboard-data.interface';
+
 @Component({
   selector: 'app-offboard-form',
   standalone: true,
@@ -20,13 +22,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class OffboardFormComponent {
   @Output() public formValidationChange = new EventEmitter<boolean>();
+  @Output() public formValueChange = new EventEmitter<IOffboardData>();
 
   private readonly _formBuilder = inject(FormBuilder);
 
   public employeeDataForm = signal(this._initEmployeeForm());
 
   constructor() {
-    this._listenOnFormValidationChange();
+    this._listenOnFormValueChange();
   }
 
   private _initEmployeeForm(): FormGroup {
@@ -63,16 +66,15 @@ export class OffboardFormComponent {
     return errorMessage;
   }
 
-  private _listenOnFormValidationChange(): void {
+  private _listenOnFormValueChange(): void {
     this.employeeDataForm().valueChanges.pipe(
+      tap((value: IOffboardData) => this.formValueChange.emit(value)),
       filter(() => this.employeeDataForm().touched),
       map(() => {
         return this.employeeDataForm().valid;
       }),
       distinctUntilChanged(),
-      tap((isValid) => {
-        this.formValidationChange.emit(isValid);
-      }),
+      tap((isValid) => this.formValidationChange.emit(isValid)),
       takeUntilDestroyed()
     ).subscribe();
   }

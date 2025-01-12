@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { OffboardFormComponent } from '../offboard-form/offboard-form.component';
 import { IEmployee } from '../../interfaces/employee.interface';
+import { IOffboardData } from '../../interfaces/offboard-data.interface';
 
 @Component({
   selector: 'app-offboard-dialog',
@@ -27,11 +28,12 @@ import { IEmployee } from '../../interfaces/employee.interface';
   ],
 })
 export class OffboardDialogComponent {
-  private readonly _dialogRef = inject(MatDialogRef<OffboardDialogComponent>);
+  private readonly _dialogRef = inject(MatDialogRef<OffboardDialogComponent, IOffboardData>);
   private readonly _employee = inject<IEmployee>(MAT_DIALOG_DATA);
 
   public readonly employeeId = model(this._employee.id);
   public confirmationDisabled = true;
+  public offboardData: IOffboardData;
 
   public onCancel(): void {
     this._dialogRef.close();
@@ -39,5 +41,9 @@ export class OffboardDialogComponent {
 
   public disableConfirmation(isFormValid: boolean): void {
     this.confirmationDisabled = !isFormValid;
+  }
+
+  public getOffboardData(offboardData: IOffboardData): void {
+    this.offboardData = offboardData;
   }
 }

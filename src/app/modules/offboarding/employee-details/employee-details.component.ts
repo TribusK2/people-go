@@ -1,13 +1,15 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Navigation, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { EMPTY, Observable, switchMap, tap } from 'rxjs';
 
 import { IEmployee } from '../../../interfaces/employee.interface';
 import { ApiService } from '../../../services/api/api.service';
 import { EmployeeTableService } from '../../../services/employee-table/employee-table.service';
 import { EmployeeStatus } from '../../../enums/employee.status.enum';
 import { OffboardDialogComponent } from '../../../components/offboard-dialog/offboard-dialog.component';
-import { tap } from 'rxjs';
+import { IOffboardData } from '../../../interfaces/offboard-data.interface';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-employee-details',
@@ -33,23 +35,20 @@ export class EmployeeDetailsComponent {
   }
 
   public offboardEmployee(): void {
-    const dialogRef = this._dialog.open(OffboardDialogComponent, {
+    const dialogRef = this._dialog.open<OffboardDialogComponent, IEmployee, IOffboardData>(OffboardDialogComponent, {
       data: this.employee(),
     });
 
     dialogRef.afterClosed().pipe(
-      tap((employeeData) => {
-        if(employeeData) {
-          this._updateEmployeeList(this._employeeTableService.employeeList());
-        }
-      })
+      switchMap((offboardData) => this._offboardUser(offboardData)),
+      tap((userData) => this._updateEmployeeList(userData, this._employeeTableService.employeeList()))
     ).subscribe();
   }
 
   private _setEmployeeDetails(currentNavigation: Navigation | null): void {
     const employeeId = currentNavigation?.extras.state?.['employeeId'] || null;
     if (!employeeId) {
-      this._router.navigate(['/offboarding/list']);
+      this.goToEmployeeList();
     } else {
       this._apiService.getEmployeeDetails(employeeId).subscribe(employee => {
         this.employee.set(employee);
@@ -64,15 +63,27 @@ export class EmployeeDetailsComponent {
     return !!employeeList && !!employee && employee.status !== EmployeeStatus.OFFBOARDED;
   }
 
-  private _updateEmployeeList(employeeList: IEmployee[] | null): void {
-    const employeeToUpdate = employeeList?.find((employee) => {
-      return employee.id === this.employee()?.id;
-    });
+  private _offboardUser(offboardData: IOffboardData | undefined): Observable<IUser> {
+    const employeeId = this.employee()?.id;
 
-    if (employeeToUpdate) {
-      employeeToUpdate.status = EmployeeStatus.OFFBOARDED;
-      this._employeeTableService.updateEmployee(employeeToUpdate);
-      this.goToEmployeeList();
+    if (employeeId && offboardData) {
+      return this._apiService.offboardUser(employeeId, offboardData);
+    }
+
+    return EMPTY;
+  }
+
+  private _updateEmployeeList(userData: IUser, employeeList: IEmployee[] | null): void {
+    if (userData) {
+      const employeeToUpdate = employeeList?.find((employee) => {
+        return employee.id === this.employee()?.id;
+      });
+
+      if (employeeToUpdate) {
+        employeeToUpdate.status = EmployeeStatus.OFFBOARDED;
+        this._employeeTableService.updateEmployee(employeeToUpdate);
+        this.goToEmployeeList();
+      }
     }
   }
 }
