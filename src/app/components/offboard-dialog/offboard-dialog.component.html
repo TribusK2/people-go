@@ -1,8 +1,12 @@
 <h2 mat-dialog-title class="dialog-title">Offboard</h2>
 <mat-dialog-content>
-  <app-offboard-form />
+  <app-offboard-form (formValidationChange)="disableConfirmation($event)" />
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-flat-button [mat-dialog-close]="employeeId()" cdkFocusInitial>Confirm</button>
+  <button mat-flat-button
+          [mat-dialog-close]="employeeId()"
+          [disabled]="confirmationDisabled">
+    Confirm
+  </button>
 </mat-dialog-actions>

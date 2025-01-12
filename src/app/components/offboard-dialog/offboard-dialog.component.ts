@@ -29,9 +29,15 @@ import { IEmployee } from '../../interfaces/employee.interface';
 export class OffboardDialogComponent {
   private readonly _dialogRef = inject(MatDialogRef<OffboardDialogComponent>);
   private readonly _employee = inject<IEmployee>(MAT_DIALOG_DATA);
+
   public readonly employeeId = model(this._employee.id);
+  public confirmationDisabled = true;
 
   public onCancel(): void {
     this._dialogRef.close();
+  }
+
+  public disableConfirmation(isFormValid: boolean): void {
+    this.confirmationDisabled = !isFormValid;
   }
 }

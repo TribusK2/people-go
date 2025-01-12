@@ -1,0 +1,34 @@
+@use 'mixins'as mix;
+@use 'variables'as var;
+
+.employeeDataForm {
+  display: flex;
+  flex-direction: column;
+  gap: var.$default-spacing;
+  margin: var.$default-spacing;
+  
+  @include mix.media(tablet) {
+    margin: var.$default-spacing-tablet;
+    gap: var.$default-spacing-tablet;
+  }
+
+  @include mix.media(desktop) {
+    margin: var.$default-spacing-desktop;
+    gap: var.$default-spacing-desktop;
+  }
+}
+
+.multipleFieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: var.$default-spacing;
+
+  @include mix.media(tablet) {
+    flex-direction: row;
+    gap: var.$default-spacing-tablet;
+  }
+
+  @include mix.media(desktop) {
+    gap: var.$default-spacing-desktop;
+  }
+}

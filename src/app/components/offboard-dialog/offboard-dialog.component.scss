@@ -1,9 +1,11 @@
+@use '@angular/material'as mat;
 @use 'colors'as clr;
 @use 'mixins'as mix;
 
 .dialog {
   &-title {
     --mdc-dialog-subhead-color: #{clr.$font-dark-color};
+    @include mat.elevation(6);
     @include mix.font-size(large);
   }
 }
@@ -11,5 +13,6 @@
 .mat-mdc-dialog-actions {
   --mdc-text-button-label-text-color: #{clr.$font-dark-color};
   --mdc-filled-button-label-text-color: #{clr.$font-dark-color};
+  @include mat.elevation(6);
   justify-content: space-between;
 }
